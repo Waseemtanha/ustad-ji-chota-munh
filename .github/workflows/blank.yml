@@ -1,0 +1,16 @@
+name: Send Telegram Signal
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send message to Telegram
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage" \
+          -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+          -d text="Ji Ustad Ji, Bot Chal Gaya 🙏 Signal Test Kamiyab Hai"
